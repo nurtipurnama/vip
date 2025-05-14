@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Match Predictor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sports Match Predictor</h1>
+        <p>Advanced Prediction System for Basketball and Football</p>
+    </header>
+
+    <main>
+        <!-- Sports Selection -->
+        <section class="sports-selection">
+            <h2>Select Sport</h2>
+            <select id="sport">
+                <option value="football">Football</option>
+                <option value="basketball">Basketball</option>
+            </select>
+        </section>
+
+        <!-- Team Information -->
+        <section class="team-info">
+            <h2>Team Information</h2>
+            <form id="team-form">
+                <div class="input-group">
+                    <label for="team1">Team 1 Name</label>
+                    <input type="text" id="team1" placeholder="Enter Team 1 Name" required>
+                </div>
+                <div class="input-group">
+                    <label for="team2">Team 2 Name</label>
+                    <input type="text" id="team2" placeholder="Enter Team 2 Name" required>
+                </div>
+                <div class="input-group">
+                    <label for="team1-ranking">Team 1 Ranking</label>
+                    <input type="number" id="team1-ranking" min="0" placeholder="Enter ranking (optional)">
+                </div>
+                <div class="input-group">
+                    <label for="team2-ranking">Team 2 Ranking</label>
+                    <input type="number" id="team2-ranking" min="0" placeholder="Enter ranking (optional)">
+                </div>
+                <div class="input-group">
+                    <label for="match-importance">Match Importance</label>
+                    <select id="match-importance">
+                        <option value="decider">Pertandingan Penentu</option>
+                        <option value="rivalry">Pertandingan Rivalitas</option>
+                        <option value="qualifier">Pertandingan Kualifikasi</option>
+                        <option value="regular">Pertandingan Reguler</option>
+                        <option value="nba_playoff">NBA Playoff</option>
+                        <option value="nba_allstar">NBA All Stars Game</option>
+                        <option value="nba_playin">NBA Play In Tournament</option>
+                        <option value="nba_final">NBA Final</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="match-location">Match Location</label>
+                    <select id="match-location">
+                        <option value="neutral">Neutral</option>
+                        <option value="team1_home">Team 1 Home</option>
+                        <option value="team2_home">Team 2 Home</option>
+                    </select>
+                </div>
+            </form>
+        </section>
+
+        <!-- Match Data -->
+        <section class="match-data">
+            <h2>Match Data</h2>
+            <div class="match-section" id="h2h-matches">
+                <h3>Head-to-Head Matches</h3>
+                <div class="input-group">
+                    <label id="h2h-team1-label">Team 1 Scores (comma separated)</label>
+                    <input type="text" id="h2h-team1" placeholder="e.g., 2,1,0">
+                </div>
+                <div class="input-group">
+                    <label id="h2h-team2-label">Team 2 Scores (comma separated)</label>
+                    <input type="text" id="h2h-team2" placeholder="e.g., 1,1,2">
+                </div>
+                <button type="button" id="h2h-add-btn">Add Head-to-Head Data</button>
+                <div id="h2h-match-summary">No matches added yet.</div>
+            </div>
+            <div class="match-section" id="team1-matches">
+                <h3>Team 1 Recent Matches</h3>
+                <div class="input-group">
+                    <label id="team1-scores-label">Team 1 Scores (comma separated)</label>
+                    <input type="text" id="team1-scores" placeholder="e.g., 3,2,1">
+                </div>
+                <div class="input-group">
+                    <label>Opponent Scores (comma separated)</label>
+                    <input type="text" id="team1-opponent" placeholder="e.g., 1,0,2">
+                </div>
+                <button type="button" id="team1-add-btn">Add Team 1 Data</button>
+                <div id="team1-match-summary">No matches added yet.</div>
+            </div>
+            <div class="match-section" id="team2-matches">
+                <h3>Team 2 Recent Matches</h3>
+                <div class="input-group">
+                    <label id="team2-scores-label">Team 2 Scores (comma separated)</label>
+                    <input type="text" id="team2-scores" placeholder="e.g., 2,3,0">
+                </div>
+                <div class="input-group">
+                    <label>Opponent Scores (comma separated)</label>
+                    <input type="text" id="team2-opponent" placeholder="e.g., 0,1,1">
+                </div>
+                <button type="button" id="team2-add-btn">Add Team 2 Data</button>
+                <div id="team2-match-summary">No matches added yet.</div>
+            </div>
+            <button type="button" id="clear-data-btn">Clear All Data</button>
+            <button type="button" id="sample-data-btn">Add Sample Data</button>
+        </section>
+
+        <!-- Betting Lines -->
+        <section class="betting-lines">
+            <h2>Betting Lines</h2>
+            <div class="input-group">
+                <label for="total-line">Total Line</label>
+                <input type="number" id="total-line" min="0" step="0.5" placeholder="e.g., 2.5">
+            </div>
+            <div class="input-group">
+                <label for="total-odds">Odds Total Line</label>
+                <input type="number" id="total-odds" step="0.01" placeholder="e.g., 1.90">
+            </div>
+            <div class="input-group">
+                <label for="point-spread">Point Spread</label>
+                <input type="number" id="point-spread" step="0.5" placeholder="e.g., 0.5">
+            </div>
+            <div class="input-group">
+                <label for="spread-odds-team1">Odds Point Spread Team 1</label>
+                <input type="number" id="spread-odds-team1" step="0.01" placeholder="e.g., 1.85">
+            </div>
+            <div class="input-group">
+                <label for="spread-odds-team2">Odds Point Spread Team 2</label>
+                <input type="number" id="spread-odds-team2" step="0.01" placeholder="e.g., 1.95">
+            </div>
+            <div class="input-group">
+                <label for="spread-direction">Spread Favorite</label>
+                <select id="spread-direction">
+                    <option value="team1">Team 1</option>
+                    <option value="team2">Team 2</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Run Analysis -->
+        <button type="button" id="analyze-button">Run Prediction</button>
+
+        <!-- Analysis Results -->
+        <section id="results" class="results hidden">
+            <h2>Prediction Results</h2>
+            <div id="prediction-results"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Sports Match Predictor | © 2025</p>
+    </footer>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="script.js"></script>
+</body>
+</html>
